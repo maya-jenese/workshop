@@ -23,13 +23,14 @@ function List() {
 
     function onSubmit() {
         const obj = { id: uuidv4(),title: title, date: date }; // constructing json obj, rdm unique id #
-        setDoc(doc(db, collectionName, obj.id), obj);
-        setTodo([...todo, obj]);
+        setDoc(doc(db, collectionName, obj.id), obj); //makes the change in firebase
+        setTodo([...todo, obj]); // adds task to to-do list
 
         setTitle("");
         setDate(new Date());
     }
 
+    // for reacting to changes - allows you to do something based on a change
     useEffect(() => {
         console.log("Hello!");
         let newArr = [];
@@ -43,7 +44,7 @@ function List() {
             });
             setTodo(newArr);
         });
-    }, []);
+    }, []); // run this only when the first component loads
 
     return (
     <div>
